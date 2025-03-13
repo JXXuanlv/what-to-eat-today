@@ -1,0 +1,60 @@
+<view class="container">
+  <view class="add-type">
+    <input 
+      class="type-input" 
+      placeholder="输入新的类型名称"
+      value="{{newTypeName}}"
+      bindinput="onInputChange"
+    />
+    <button 
+      class="add-button" 
+      type="primary" 
+      disabled="{{!newTypeName}}"
+      bindtap="addType"
+    >添加</button>
+  </view>
+
+  <view class="type-list">
+    <view 
+      class="type-item"
+      wx:for="{{foodTypes}}"
+      wx:key="id"
+    >
+      <view class="type-content">
+        <view class="type-info">
+          <view class="type-image" wx:if="{{item.imageUrl}}">
+            <image src="{{item.imageUrl}}" mode="aspectFill" bindtap="previewImage" data-url="{{item.imageUrl}}"/>
+          </view>
+          <block wx:if="{{item.isEditing}}">
+            <input 
+              class="edit-input"
+              value="{{item.editName}}"
+              focus="{{true}}"
+              bindinput="onEditInput"
+              data-id="{{item.id}}"
+            />
+          </block>
+          <block wx:else>
+            <text class="type-name">{{item.name}}</text>
+          </block>
+        </view>
+        <view class="type-actions">
+          <view class="image-upload" wx:if="{{item.isEditing}}">
+            <button class="upload-btn" bindtap="chooseImage" data-id="{{item.id}}">{{item.imageUrl ? '更换图片' : '上传图片'}}</button>
+            <text class="delete-image" wx:if="{{item.imageUrl}}" bindtap="deleteImage" data-id="{{item.id}}">删除图片</text>
+          </view>
+          <view class="actions">
+            <block wx:if="{{item.isEditing}}">
+              <text class="save" bindtap="saveEdit" data-id="{{item.id}}">保存</text>
+              <text class="cancel" bindtap="cancelEdit" data-id="{{item.id}}">取消</text>
+            </block>
+            <block wx:else>
+              <text class="edit" bindtap="startEdit" data-id="{{item.id}}">编辑</text>
+              <text class="delete" bindtap="deleteType" data-id="{{item.id}}">删除</text>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

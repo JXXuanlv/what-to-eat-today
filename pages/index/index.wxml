@@ -1,0 +1,34 @@
+<!-- 页面容器 -->
+<view class="container">
+  <!-- 问题展示区域：显示当前选择的食物类型或随机结果 -->
+  <view class="question-container">
+    <text class="question-text">{{questionText}}</text>
+    <view class="image-section">
+      <image 
+        wx:if="{{currentImage}}"
+        class="food-image"
+        src="{{currentImage}}"
+        mode="aspectFill"
+      />
+      <image 
+        wx:else
+        class="food-image"
+        src="/whattoeat.png"
+        mode="aspectFill"
+      />
+    </view>
+  </view>
+
+  <!-- 底部控制区域：包含开始随机按钮和管理类型入口 -->
+  <view class="controls">
+    <button 
+      class="start-button"
+      type="primary"
+      bindtap="startRandom"
+      disabled="{{isRandomizing}}"
+    >开始随机</button>
+    <view class="manage-types" bindtap="goToTypeManage">
+      <text>管理类型</text>
+    </view>
+  </view>
+</view>

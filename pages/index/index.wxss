@@ -1,0 +1,129 @@
+/* 页面容器样式：铺满全屏，垂直居中布局 */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20rpx;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* 问题容器：包含文字和图片区域 */
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20rpx;
+}
+
+/* 问题文本样式 */
+.question-text {
+  font-size: 36rpx;
+  text-align: center;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+/* 图片展示区域：白色卡片样式，带阴影效果 */
+.image-section {
+  width: 500rpx;
+  height: 500rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* 食物图片样式 */
+.food-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 底部控制区域：固定在底部的按钮区域 */
+.controls {
+  width: 100%;
+  position: fixed;
+  bottom: 40rpx;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+}
+
+/* 管理类型按钮：右侧小按钮 */
+.manage-types {
+  position: absolute;
+  right: 30rpx;
+  padding: 10rpx 20rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 开始随机按钮：主按钮样式 */
+.start-button {
+  width: 40% !important;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 禁用状态的开始按钮样式 */
+.start-button[disabled] {
+  background: #bdc3c7 !important;
+  color: #fff !important;
+  box-shadow: none;
+}
+
+/* 按钮点击效果 */
+.start-button:active {
+  transform: translateY(4rpx);
+  box-shadow: 0 4rpx 8rpx rgba(52,152,219,0.2);
+}
+
+/* 食物类型网格布局 */
+.food-types-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+  flex: 1;
+  opacity: 0;
+  transform: translateY(20rpx);
+  transition: all 0.5s ease;
+}
+
+/* 食物类型网格显示动画 */
+.food-types-grid.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 食物类型单项样式 */
+.food-type-item {
+  background: #fff;
+  height: 160rpx;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #34495e;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+
+.food-type-item.selected {
+  background: #3498db;
+  color: #fff;
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 16rpx rgba(52,152,219,0.2);
+}
