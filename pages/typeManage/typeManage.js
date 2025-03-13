@@ -9,8 +9,25 @@ Page({
 
   // 页面加载时从本地存储获取食物类型列表
   onLoad() {
-    // 尝试从本地存储获取数据，如果没有则使用空数组
-    const storedTypes = wx.getStorageSync('foodTypes') || []
+    // 尝试从本地存储获取数据
+    let storedTypes = wx.getStorageSync('foodTypes')
+    
+    // 如果本地没有数据，则使用默认的食物类型
+    if (!storedTypes || !storedTypes.length) {
+      storedTypes = [
+        { id: 1, name: '中餐', imageUrl: '' },
+        { id: 2, name: '西餐', imageUrl: '' },
+        { id: 3, name: '快餐', imageUrl: '' },
+        { id: 4, name: '面食', imageUrl: '' },
+        { id: 5, name: '火锅', imageUrl: '' },
+        { id: 6, name: '烧烤', imageUrl: '' },
+        { id: 7, name: '日料', imageUrl: '' },
+        { id: 8, name: '韩餐', imageUrl: '' }
+      ]
+      // 将默认数据保存到本地存储
+      wx.setStorageSync('foodTypes', storedTypes)
+    }
+    
     // 将数据同步到全局状态
     app.globalData.foodTypes = storedTypes
     // 更新页面数据
